@@ -14,7 +14,7 @@ git clone https://github.com/Xv-M-S/Client-Server-Track-And-Jersey-Number-Recogn
 
 ```txt
 conda create --name track_jnr python=3.10
-conda activate track
+conda activate track_jnr
 pip install -r requirements.txt
 pip install boxmot
 pip3 install  --trusted-host https://repo.huaweicloud.com -i https://repo.huaweicloud.com/repository/pypi/simple  Flask
