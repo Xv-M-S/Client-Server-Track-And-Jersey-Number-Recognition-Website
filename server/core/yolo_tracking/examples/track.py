@@ -14,11 +14,11 @@ import torch
 from boxmot import TRACKERS
 from boxmot.tracker_zoo import create_tracker
 from boxmot.utils import ROOT, WEIGHTS
-from boxmot.utils.checks import TestRequirements
+# from boxmot.utils.checks import TestRequirements
 from examples.detectors import get_yolo_inferer
 
-__tr = TestRequirements()
-__tr.check_packages(('ultralytics @ git+https://github.com/mikel-brostrom/ultralytics.git', ))  # install
+# __tr = TestRequirements()
+# __tr.check_packages(('ultralytics @ git+https://github.com/mikel-brostrom/ultralytics.git', ))  # install
 
 from ultralytics import YOLO
 from ultralytics.data.utils import VID_FORMATS
@@ -49,7 +49,14 @@ def on_predict_start(predictor, persist=False):
         ROOT /\
         'boxmot' /\
         'configs' /\
+        'trackers' /\
         (predictor.custom_args.tracking_method + '.yaml')
+    
+    # pwd = '/home/sxm/flux-workspace/layout-to-image-zhuanlan/Client-Server-Track-And-Jersey-Number-Recognition-Website/server/core/yolo_tracking/boxmot/configs'
+    # tracking_config = os.path.join(pwd,(predictor.custom_args.tracking_method + '.yaml'))
+
+    print(predictor.custom_args)
+
     trackers = []
     for i in range(predictor.dataset.bs):
         tracker = create_tracker(
@@ -114,8 +121,9 @@ def run(args):
     for frame_idx, r in enumerate(results):
 
         if r.boxes.data.shape[1] == 7:
-            # print(yolo.predictor.save_dir)
-            if yolo.predictor.source_type.webcam or args.source.endswith(VID_FORMATS):
+            # print(yolo.predictor.source_type)
+            # print(VID_FORMATS)
+            if yolo.predictor.source_type.stream or args.source.endswith(tuple(VID_FORMATS)):
                 # print(yolo.predictor.save_dir)
                 p = yolo.predictor.save_dir / 'mot' / (args.source + '.txt')
                 yolo.predictor.mot_txt_path = p
