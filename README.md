@@ -47,10 +47,13 @@ streamlit run client.py
 ## model
 
 osnet
+
 repo : https://github.com/MatthewAbugeja/osnet
+
 model : https://kaiyangzhou.github.io/deep-person-reid/MODEL_ZOO.html
 
 yolo_tracking 
+
 repo : https://github.com/CV-Tracking/yolo_tracking
 
 ## debug
