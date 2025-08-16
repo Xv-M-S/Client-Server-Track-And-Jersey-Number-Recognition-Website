@@ -28,5 +28,6 @@ ROOT = root_path.relative_to(Path.cwd())
 # Source
 SOURCES_LIST = ["Image", "Video", "Webcam"]
 DETECTION_METHOD_LIST = ["ocsort","strongsort"]
+URL_PREFIX = "http://202.200.142.248:8080"
 # VEDIO_LOCATION = "./input/demo.mp4"
 # IMAGE_LOCATION = "./input/demo.png"

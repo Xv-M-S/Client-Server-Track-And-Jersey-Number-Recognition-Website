@@ -55,7 +55,7 @@ repo : https://github.com/CV-Tracking/yolo_tracking
 
 ## debug
 
-command:
+command 1:
 
 ``` bash
 python core/yolo_tracking/examples/track.py \
@@ -68,4 +68,16 @@ python core/yolo_tracking/examples/track.py \
   --save-id-crops \
   --save --save-txt --save-mot \
   --device 0
+```
+
+command 2: ocsort
+
+``` bash
+python examples/track.py --yolo-model pth/yolov8.pt --tracking-method ocsort --source video/qiuxing01.mp4  --save-id-crops --classes 0 --save --save-txt --save-mot --show --show-labels --show-conf --per-class --verbose --device 0
+```
+
+command 3: deepocsort
+
+``` bash
+python examples/track.py --yolo-model pth/yolov8.pt --tracking-method deepocsort --reid-model pth/osnet_x1_0.pt --source video/crop.png  --save-id-crops --classes 0 --save --save-txt --save-mot --device 0
 ```

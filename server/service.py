@@ -210,7 +210,9 @@ def _inference(data):
                 # 对于使用ocsort的方法，需要对视频进行格式的转换
                 mp4_file = os.path.join(current_folder_path,"output",user_id,"video/detection_demo/demo.mp4")
                 # 视频格式转换
-                from moviepy.editor import VideoFileClip
+                # from moviepy.editor import VideoFileClip
+                from moviepy.video.io.VideoFileClip import VideoFileClip
+
                 avi_file = os.path.join(current_folder_path,"output",user_id,"video/detection_demo/demo.avi")
                 # 使用 VideoFileClip 加载 AVI 视频
                 clip = VideoFileClip(avi_file)

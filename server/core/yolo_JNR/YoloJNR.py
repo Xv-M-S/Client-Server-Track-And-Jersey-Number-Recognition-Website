@@ -53,7 +53,7 @@ def infer_JNR(data_path,R_Conf,F_Conf,user_id):
             # result = model(source=image_path,task="detect",imgsz=256,save_crop=True,name=out_dir,conf=0.8,device=5)
 
             # 返回 Results 对象列表
-            result = model(source=image_path,task="detect",imgsz=256,conf=R_Conf,device=7)
+            result = model(source=image_path,task="detect",imgsz=256,conf=R_Conf,device=0)
             count += 1
             # 边界框输出的 Boxes 对象
             boxes = result[0].boxes  
@@ -68,7 +68,7 @@ def infer_JNR(data_path,R_Conf,F_Conf,user_id):
             else:
                 continue
             # detect判定是否真的含有球号
-            detect_result = detect_model(source=image_path,task="detect",imgsz=256,conf=F_Conf,device=7)  # 返回 Results 对象列表
+            detect_result = detect_model(source=image_path,task="detect",imgsz=256,conf=F_Conf,device=0)  # 返回 Results 对象列表
             is_exists_number = detect_result[0].boxes.cls.cpu().numpy()
             detect_cls = ""
             if len(is_exists_number)==1:

@@ -1,7 +1,11 @@
 import cv2
 import random
-from moviepy.editor import VideoFileClip, concatenate_videoclips
-from moviepy.editor import ImageSequenceClip
+# from moviepy.editor import VideoFileClip, concatenate_videoclips
+# from moviepy.editor import ImageSequenceClip
+from moviepy.video.io.VideoFileClip import VideoFileClip
+from moviepy.video.compositing.CompositeVideoClip import concatenate_videoclips
+from moviepy.video.io.ImageSequenceClip import ImageSequenceClip
+
 import os
 # 读取MOT16格式的追踪数据
 def read_mot16(filename):
@@ -82,7 +86,8 @@ def main_video(video_path, mot16_path, user_id):
     audio = video.audio
     output_video = os.path.join(current_folder_path,"../../output",user_id,"output.mp4")
     final_video = concatenate_videoclips([VideoFileClip(output_video)])
-    final_video = final_video.set_audio(audio)
+    # final_video = final_video.set_audio(audio)
+    final_video.audio = audio
     final_path = os.path.join(current_folder_path,"../../output",user_id,"final_video.mp4")
     final_video.write_videofile(final_path)
     # os.remove(output_video)

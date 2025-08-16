@@ -10,19 +10,23 @@ sys.path.append(os.path.join(current_folder_path,".."))
 import argparse
 from functools import partial
 from pathlib import Path
-from moviepy.editor import VideoFileClip, concatenate_videoclips
-from moviepy.editor import ImageSequenceClip
+# from moviepy.editor import VideoFileClip, concatenate_videoclips
+# from moviepy.editor import ImageSequenceClip
+from moviepy.video.io.VideoFileClip import VideoFileClip
+from moviepy.video.compositing.CompositeVideoClip import concatenate_videoclips
+from moviepy.video.io.ImageSequenceClip import ImageSequenceClip
+
 
 import torch
 
 from boxmot import TRACKERS
 from boxmot.tracker_zoo import create_tracker
 from boxmot.utils import ROOT, WEIGHTS
-from boxmot.utils.checks import TestRequirements
+# from boxmot.utils.checks import TestRequirements
 from examples.detectors import get_yolo_inferer
 
-__tr = TestRequirements()
-__tr.check_packages(('ultralytics @ git+https://github.com/mikel-brostrom/ultralytics.git', ))  # install
+# __tr = TestRequirements()
+# __tr.check_packages(('ultralytics @ git+https://github.com/mikel-brostrom/ultralytics.git', ))  # install
 
 from ultralytics import YOLO
 from ultralytics.data.utils import VID_FORMATS

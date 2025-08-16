@@ -20,6 +20,7 @@ import subprocess
 import requests
 import secrets
 import string
+from config import URL_PREFIX
 
 
 
@@ -78,7 +79,7 @@ def infer_uploaded_image(conf, method , set_rec_confidence, set_filter_confidenc
                 del st.session_state["visual_image"]
             with st.spinner("Running..."):
                 # 构建http请求
-                url = 'http://120.46.142.89:8080/track_image'
+                url = URL_PREFIX + '/track_image'
                 # 构造请求数据
                 data = {
                     'user_id':st.session_state["session_id"],
@@ -121,7 +122,7 @@ def infer_uploaded_image(conf, method , set_rec_confidence, set_filter_confidenc
             if st.button("Execut Jersey number recognition"):
                 with st.spinner("Running..."):
                     # 构建http请求
-                    url = 'http://120.46.142.89:8080/JNR_image'
+                    url = URL_PREFIX + '/JNR_image'
                     # 构造请求数据
                     data = {
                         'user_id':st.session_state["session_id"],
@@ -203,7 +204,7 @@ def infer_uploaded_video(conf, method, set_rec_confidence, set_filter_confidence
                 del st.session_state["visual_video"]
             with st.spinner("Running..."):
                 # 构建http请求
-                url = 'http://120.46.142.89:8080/track_video'
+                url = URL_PREFIX + '/track_video'
                 # 构造请求数据
                 data = {
                     'user_id':st.session_state["session_id"],
@@ -240,7 +241,7 @@ def infer_uploaded_video(conf, method, set_rec_confidence, set_filter_confidence
             if st.button("Execut Jersey number recognition"):
                 with st.spinner("Running..."):
                     # 构建http请求
-                    url = 'http://120.46.142.89:8080/JNR_video'
+                    url = URL_PREFIX + '/JNR_video'
                     # 构造请求数据
                     data = {
                         'user_id':st.session_state["session_id"],
