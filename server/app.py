@@ -41,6 +41,18 @@ def track_image_func():
     if file_path == False:
         print("_postprocess wrong!!!")
 
+    # 如果图片是jpg,则将其转换成png
+    # 如果 .png 不存在，尝试从 .jpg 转换
+    from PIL import Image
+    if not os.path.exists(file_path):
+        jpg_path = file_path.replace('.png', '.jpg')
+        if os.path.exists(jpg_path):
+            Image.open(jpg_path).save(file_path, 'PNG')
+            print(f"Converted {jpg_path} to {file_path}")
+    
+    
+        
+
     return send_file(file_path, mimetype='image/png')
 
 @app.route('/track_video', methods=['POST'])

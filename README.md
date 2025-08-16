@@ -28,6 +28,18 @@ pip install ultralytics
 pip install streamlit
 ```
 
+# download modle
+
+download yolov8.pt  and osnet.pt to server/core/yolo_tracking/pth
+ 
+yolov8.pt : https://drive.google.com/file/d/16p6XI3a-fy39lwelnBgnTy4vFVVEMggD/view?usp=sharing
+
+osnet.pt : https://drive.google.com/file/d/1j6ZqxjWtQu6cM5Rn46tP5g_PInXDa7-V/view?usp=sharing
+``` bash
+cd server/core/yolo_tracking
+mkdir -p ./pth
+```
+
 # Get started
 
 **Run Server :**

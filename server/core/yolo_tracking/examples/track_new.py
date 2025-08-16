@@ -50,11 +50,19 @@ def on_predict_start(predictor, persist=False):
     assert predictor.custom_args.tracking_method in TRACKERS, \
         f"'{predictor.custom_args.tracking_method}' is not supported. Supported ones are {TRACKERS}"
 
+    # tracking_config = \
+    #     ROOT /\
+    #     'boxmot' /\
+    #     'configs' /\
+    #     (predictor.custom_args.tracking_method + '.yaml')
+    
     tracking_config = \
         ROOT /\
         'boxmot' /\
         'configs' /\
+        'trackers' /\
         (predictor.custom_args.tracking_method + '.yaml')
+    
     trackers = []
     for i in range(predictor.dataset.bs):
         tracker = create_tracker(
@@ -123,8 +131,7 @@ def run(args):
     for frame_idx, r in enumerate(results):
 
         if r.boxes.data.shape[1] == 7:
-
-            if yolo.predictor.source_type.webcam or args.source.endswith(VID_FORMATS):
+            if yolo.predictor.source_type.stream or args.source.endswith(tuple(VID_FORMATS)):
                 p = yolo.predictor.save_dir / 'mot' / (args.source + '.txt')
                 yolo.predictor.mot_txt_path = p
             elif 'MOT16' or 'MOT17' or 'MOT20' in args.source:

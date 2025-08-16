@@ -67,7 +67,7 @@ def infer_uploaded_image(conf, method , set_rec_confidence, set_filter_confidenc
         st.image(
             image=source_img,
             caption="Uploaded Image",
-            use_column_width=True
+            use_container_width=True
         )
     run_JNR = False
     if source_img:
@@ -117,7 +117,7 @@ def infer_uploaded_image(conf, method , set_rec_confidence, set_filter_confidenc
             res_plotted = st.session_state["det_image"]
             st.image(res_plotted,
                         caption="Detected Image",
-                        use_column_width=True)
+                        use_container_width=True)
         
             if st.button("Execut Jersey number recognition"):
                 with st.spinner("Running..."):
@@ -150,7 +150,7 @@ def infer_uploaded_image(conf, method , set_rec_confidence, set_filter_confidenc
             if 'visual_image' in st.session_state:
                 st.image(st.session_state["visual_image"],
                         caption="Detected and Recognized Image",
-                        use_column_width=True)
+                        use_container_width=True)
 
     
                     
