@@ -118,6 +118,15 @@ def run(args):
     # store custom args in predictor
     yolo.predictor.custom_args = args
 
+    # 删除旧结果，防止旧结果影响掺杂到新结果中
+    p = yolo.predictor.save_dir / 'mot' / (args.source + '.txt')
+    yolo.predictor.mot_txt_path = p
+    if os.path.exists(yolo.predictor.mot_txt_path):
+        os.remove(yolo.predictor.mot_txt_path)
+        print(f"文件 {yolo.predictor.mot_txt_path} 已删除")
+    else:
+        print(f"文件 {yolo.predictor.mot_txt_path} 不存在")
+
     for frame_idx, r in enumerate(results):
 
         if r.boxes.data.shape[1] == 7:

@@ -163,10 +163,11 @@ def _inference(data):
                     "--name", "detection_demo",
                     "--save-id-crops",
                     "--classes", "0",
-                    "--save", "--save-txt", "--save-mot",
+                    "--save", "--save-txt", "--save-mot", "--save-video",
                     "--device", "0"
                 ])
                 ori_file = os.path.join(current_folder_path,"output",user_id,"video/detection_demo/final_video.mp4")
+                # ori_file = os.path.join(current_folder_path,"output",user_id,"video/detection_demo/demo.avi")
                 des_file = os.path.join(current_folder_path,"output",user_id,"video/detection_demo/demo.mp4")
                 cmd = "mv " + ori_file + " " + des_file
                 os.system(cmd)
@@ -198,10 +199,11 @@ def _inference(data):
                     "--name", "detection_demo",
                     "--save-id-crops",
                     "--classes", "0",
-                    "--save", "--save-txt", "--save-mot",
+                    "--save", "--save-txt", "--save-mot", "--save-video",
                     "--device", "0"
                 ])
-                ori_file = os.path.join(current_folder_path,"output",user_id,"video/detection_demo/final_video.mp4")
+                # ori_file = os.path.join(current_folder_path,"output",user_id,"video/detection_demo/final_video.mp4")
+                ori_file = os.path.join(current_folder_path,"output",user_id,"video/detection_demo/demo.avi")
                 des_file = os.path.join(current_folder_path,"output",user_id,"video/detection_demo/demo.mp4")
                 cmd = "mv " + ori_file + " " + des_file
                 os.system(cmd)

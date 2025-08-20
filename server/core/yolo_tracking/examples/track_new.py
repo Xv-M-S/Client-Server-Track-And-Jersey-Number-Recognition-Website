@@ -124,9 +124,19 @@ def run(args):
     # store custom args in predictor
     yolo.predictor.custom_args = args
     video_writer = None
-    save_video_path = yolo.predictor.save_dir / 'video'
+    # save_video_path = yolo.predictor.save_dir / 'video'
+    save_video_path = yolo.predictor.save_dir
     if args.save_video:
         os.makedirs(save_video_path, exist_ok=True)
+
+    # 删除旧结果，防止旧结果影响掺杂到新结果中
+    p = yolo.predictor.save_dir / 'mot' / (args.source + '.txt')
+    yolo.predictor.mot_txt_path = p
+    if os.path.exists(yolo.predictor.mot_txt_path):
+        os.remove(yolo.predictor.mot_txt_path)
+        print(f"文件 {yolo.predictor.mot_txt_path} 已删除")
+    else:
+        print(f"文件 {yolo.predictor.mot_txt_path} 不存在")
 
     for frame_idx, r in enumerate(results):
 
@@ -176,13 +186,14 @@ def run(args):
             video = VideoFileClip(input_video_file)
             # 获取视频的音频
             audio = video.audio
-            save_path = yolo.predictor.save_dir / 'video' 
+            # save_path = yolo.predictor.save_dir / 'video' 
+            save_path = yolo.predictor.save_dir
             output_video = os.path.join(save_path, "output.mp4")
             final_video = concatenate_videoclips([VideoFileClip(output_video)])
-            final_video = final_video.set_audio(audio)
+            final_video = final_video.with_audio(audio)
             final_path = os.path.join(save_path, "final_video.mp4")
             final_video.write_videofile(final_path)
-            os.remove(output_video)
+            # os.remove(output_video)
 
 
 def parse_opt():
@@ -242,6 +253,7 @@ def parse_opt():
                         help='save tracking results in a mp4')
 
     opt = parser.parse_args()
+    print("Parsed options:", opt)
     return opt
 
 
